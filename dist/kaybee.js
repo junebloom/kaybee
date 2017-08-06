@@ -5,8 +5,7 @@
 }(this, (function () { 'use strict';
 
 const options = {
-  renameKeys: true,
-  enableRepeat: false
+  renameKeys: true
 };
 
 const pressedKeys = {};
@@ -26,16 +25,13 @@ function transformKeyName (key) {
     .replace(/(^\s$)|spacebar/, 'space')
 }
 
-const kaybee = { options, isKeyDown, isCodeDown, transformKeyName };
 document.addEventListener('keydown', event => {
-  if (!options.enableRepeat && event.repeat) return
+  if (event.repeat) return
   const key = options.renameKeys ? transformKeyName(event.key) : event.key;
   const code = event.code;
 
   pressedKeys[key] = true;
   pressedCodes[code] = true;
-
-  if (kaybee.onKeyDown) kaybee.onKeyDown(key, code);
 });
 
 document.addEventListener('keyup', event => {
@@ -44,11 +40,11 @@ document.addEventListener('keyup', event => {
 
   pressedKeys[key] = false;
   pressedCodes[code] = false;
-
-  if (kaybee.onKeyUp) kaybee.onKeyUp(key, code);
 });
 
-return kaybee;
+var index = { options, isKeyDown, isCodeDown, transformKeyName };
+
+return index;
 
 })));
 //# sourceMappingURL=kaybee.js.map
