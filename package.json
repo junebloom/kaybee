@@ -1,0 +1,9 @@
+{
+  "name": "keybee",
+  "version": "0.0.0",
+  "description": "A busy little keyboard input library for games",
+  "author": "Sam Woodruff",
+  "license": "MIT",
+  "main": "src/index.js",
+  "scripts": {}
+}
