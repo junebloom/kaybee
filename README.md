@@ -1,3 +1,4 @@
+![kaybee](http://i.imgur.com/ngOrZvG.png)
 # kaybee
 A very small library for getting key state. Intended for use in combination with [fae](https://github.com/sambrosia/fae), but it's generic enough to be used for any project.
 
