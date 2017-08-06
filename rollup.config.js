@@ -1,8 +1,8 @@
 export default {
   entry: 'src/index.js',
-  dest: 'dist/keybee.js',
+  dest: 'dist/kaybee.js',
   sourceMap: true,
 
   format: 'umd',
-  moduleName: 'keybee'
+  moduleName: 'kaybee'
 }
