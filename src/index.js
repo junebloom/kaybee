@@ -2,6 +2,7 @@ const options = {
   renameKeys: true,
   enableRepeat: false
 }
+
 const pressedKeys = {}
 const pressedCodes = {}
 
@@ -19,6 +20,9 @@ function transformKeyName (key) {
     .replace(/(^\s$)|spacebar/, 'space')
 }
 
+const keybee = { options, isKeyDown, isCodeDown, transformKeyName }
+export default keybee
+
 document.addEventListener('keydown', event => {
   if (!options.enableRepeat && event.repeat) return
   const key = options.renameKeys ? transformKeyName(event.key) : event.key
@@ -26,6 +30,8 @@ document.addEventListener('keydown', event => {
 
   pressedKeys[key] = true
   pressedCodes[code] = true
+
+  if (keybee.onKeyDown) keybee.onKeyDown(key, code)
 })
 
 document.addEventListener('keyup', event => {
@@ -34,6 +40,6 @@ document.addEventListener('keyup', event => {
 
   pressedKeys[key] = false
   pressedCodes[code] = false
-})
 
-export default { options, isKeyDown, isCodeDown, transformKeyName }
+  if (keybee.onKeyUp) keybee.onKeyUp(key, code)
+})
