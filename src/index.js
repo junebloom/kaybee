@@ -1,5 +1,6 @@
 const options = {
-  renameKeys: true
+  renameKeys: true,
+  enableRepeat: false
 }
 const pressedKeys = {}
 const pressedCodes = {}
@@ -19,6 +20,7 @@ function transformKeyName (key) {
 }
 
 document.addEventListener('keydown', event => {
+  if (!options.enableRepeat && event.repeat) return
   const key = options.renameKeys ? transformKeyName(event.key) : event.key
   const code = event.code
 
