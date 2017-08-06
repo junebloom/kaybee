@@ -2,8 +2,14 @@
   "name": "keybee",
   "version": "0.0.0",
   "description": "A busy little keyboard input library for games",
+  "repository": "sambrosia/keybee",
   "author": "Sam Woodruff",
   "license": "MIT",
-  "main": "src/index.js",
+  "main": "dist/keybee.js",
+  "module": "src/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {}
 }
