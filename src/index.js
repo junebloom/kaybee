@@ -1,3 +1,6 @@
+const options = {
+  renameKeys: true
+}
 const pressedKeys = {}
 const pressedCodes = {}
 
@@ -16,7 +19,7 @@ function transformKeyName (key) {
 }
 
 document.addEventListener('keydown', event => {
-  const key = transformKeyName(event.key)
+  const key = options.renameKeys ? transformKeyName(event.key) : event.key
   const code = event.code
 
   pressedKeys[key] = true
@@ -24,11 +27,11 @@ document.addEventListener('keydown', event => {
 })
 
 document.addEventListener('keyup', event => {
-  const key = transformKeyName(event.key)
+  const key = options.renameKeys ? transformKeyName(event.key) : event.key
   const code = event.code
 
   pressedKeys[key] = false
   pressedCodes[code] = false
 })
 
-export default { isKeyDown, isCodeDown }
+export default { options, isKeyDown, isCodeDown, transformKeyName }
