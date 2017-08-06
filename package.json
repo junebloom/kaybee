@@ -11,5 +11,11 @@
     "dist",
     "src"
   ],
-  "scripts": {}
+  "scripts": {
+    "build": "rollup --config",
+    "build:watch": "rollup --config --watch"
+  },
+  "devDependencies": {
+    "rollup": "^0.45.2"
+  }
 }
