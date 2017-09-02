@@ -1,5 +1,9 @@
-export default class Kaybee {
+import EventEmitter from 'eventemitter3'
+
+export default class Kaybee extends EventEmitter {
   constructor (options) {
+    super()
+
     this.options = {
       renameKeys: options.renameKeys || true
     }
@@ -22,6 +26,8 @@ export default class Kaybee {
 
     this.pressedKeys[key] = pressed
     this.pressedCodes[code] = pressed
+
+    this.emit(event.type, key, code)
   }
 
   getKeyName (key) {

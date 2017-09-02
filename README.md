@@ -26,11 +26,24 @@ if (kb.isCodeDown('KeyW')) {
 
 Take a peek at the source to see what exactly is going on.
 
-## Options
-You can configure kaybee's behavior by passing an `options` object to the Kaybee constructor. There is currently only one option, but there may be more in the future. That option is:
+## Events
+Kaybee extends [EventEmitter](https://github.com/primus/eventemitter3), and emits `'keydown'` and `'keyup'` events.
 
-### `renameKeys: true`
-If true, key name strings (but not key code strings) are transformed to more sensible values. All key names become lowercase, arrow keys are unprefixed, and the space key is given a real value.
+```javascript
+kb.on('keydown', (key, code) => {
+  // respond to the keydown event
+})
+
+kb.on('keyup', (key, code) => {
+  // respond to the keyup event
+})
+```
+
+## Options
+You can configure kaybee's behavior by passing an `options` object to the Kaybee constructor. There is currently only one option:
+
+### `renameKeys`
+If `true` (default), key name strings (but not key *code* strings) are transformed to more sensible values. All key names become lowercase, arrow keys are unprefixed, and the space key is given a real value.
 
 `'A'` -> `'a'`
 
@@ -42,20 +55,12 @@ If true, key name strings (but not key code strings) are transformed to more sen
 If you want to add key events to your fae game, it's fairly simple:
 
 ```javascript
-import Kaybee from 'kaybee'
 import fae from 'fae'
+import Kaybee from 'kaybee'
 
-const kb = new Kaybee()
 const app = new fae.Application()
+const kb = new Kaybee()
 
-function handleKeyEvent (event) {
-  const key = kb.getKeyName(event.key)
-  const code = event.code
-  app.event.emit(event.type, key, code)
-}
-
-document.addEventListener('keydown', handleKeyEvent)
-document.addEventListener('keyup', handleKeyEvent)
+kb.on('keydown', (key, code) => app.event.emit('keydown', key, code))
+kb.on('keyup', (key, code) => app.event.emit('keyup', key, code))
 ```
-
-I may add an event emitter to kaybee to make this even simpler.
