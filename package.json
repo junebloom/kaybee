@@ -14,8 +14,7 @@
   "scripts": {
     "build": "rollup --config",
     "build:watch": "rollup --config --watch",
-    "version": "npm run build",
-    "postversion": "git push && git push --tags"
+    "prepublishOnly": "git push && git push --tags"
   },
   "dependencies": {
     "eventemitter3": "^2.0.3"
