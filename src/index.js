@@ -1,39 +1,38 @@
-const options = {
-  renameKeys: true
+export default class Kaybee {
+  constructor (options) {
+    this.options = {
+      renameKeys: options.renameKeys || true
+    }
+
+    this.pressedKeys = {}
+    this.pressedCodes = {}
+
+    document.addEventListener('keydown', this.handleKeyEvent)
+    document.addEventListener('keyup', this.handleKeyEvent)
+  }
+
+  isKeyDown (key) { return this.pressedKeys[key] || false }
+  isCodeDown (code) { return this.pressedCodes[code] || false }
+
+  handleKeyEvent(event) {
+    if (event.repeat) return
+    const pressed = event.type === 'keydown'
+    const key = this.getKeyName(key)
+    const code = event.code
+
+    this.pressedKeys[key] = pressed
+    this.pressedCodes[code] = pressed
+  }
+
+  getKeyName (key) {
+    if (this.options.renameKeys) return Kaybee.transformKeyName(key)
+    else return key
+  }
+
+  static transformKeyName (key) {
+    return key
+      .toLowerCase()
+      .replace(/^arrow/, '')
+      .replace(/(^\s$)|spacebar/, 'space')
+  }
 }
-
-const pressedKeys = {}
-const pressedCodes = {}
-
-function isKeyDown (key) {
-  return pressedKeys[key] || false
-}
-
-function isCodeDown (code) {
-  return pressedCodes[code] || false
-}
-
-function transformKeyName (key) {
-  return key.toLowerCase()
-    .replace(/^arrow/, '')
-    .replace(/(^\s$)|spacebar/, 'space')
-}
-
-document.addEventListener('keydown', event => {
-  if (event.repeat) return
-  const key = options.renameKeys ? transformKeyName(event.key) : event.key
-  const code = event.code
-
-  pressedKeys[key] = true
-  pressedCodes[code] = true
-})
-
-document.addEventListener('keyup', event => {
-  const key = options.renameKeys ? transformKeyName(event.key) : event.key
-  const code = event.code
-
-  pressedKeys[key] = false
-  pressedCodes[code] = false
-})
-
-export default { options, isKeyDown, isCodeDown, transformKeyName }
