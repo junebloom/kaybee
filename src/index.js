@@ -14,10 +14,10 @@ export default class Kaybee {
   isKeyDown (key) { return this.pressedKeys[key] || false }
   isCodeDown (code) { return this.pressedCodes[code] || false }
 
-  handleKeyEvent(event) {
+  handleKeyEvent (event) {
     if (event.repeat) return
     const pressed = event.type === 'keydown'
-    const key = this.getKeyName(key)
+    const key = this.getKeyName(event.key)
     const code = event.code
 
     this.pressedKeys[key] = pressed

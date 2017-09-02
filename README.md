@@ -49,7 +49,7 @@ const kb = new Kaybee()
 const app = new fae.Application()
 
 function handleKeyEvent (event) {
-  const key = kb.getKeyName(key)
+  const key = kb.getKeyName(event.key)
   const code = event.code
   app.event.emit(event.type, key, code)
 }
