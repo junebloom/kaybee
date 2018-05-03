@@ -5,18 +5,12 @@ import uglify from 'rollup-plugin-uglify'
 import filesize from 'rollup-plugin-filesize'
 
 export default {
-  entry: 'src/index.js',
-  dest: 'dist/kaybee.js',
-  sourceMap: true,
-
-  format: 'umd',
-  moduleName: 'kaybee',
-
-  plugins: [
-    resolve(),
-    commonjs(),
-    buble(),
-    uglify(),
-    filesize()
-  ]
+  input: 'src/index.js',
+  output: {
+    name: 'kaybee',
+    file: 'dist/kaybee.js',
+    sourceMap: true,
+    format: 'umd'
+  },
+  plugins: [resolve(), commonjs(), buble(), uglify(), filesize()]
 }
