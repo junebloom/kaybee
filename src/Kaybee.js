@@ -1,6 +1,6 @@
 import EventEmitter from 'eventemitter3'
 
-export default class Kaybee extends EventEmitter {
+class Kaybee extends EventEmitter {
   constructor(options = { renameKeys: true }) {
     super()
 
@@ -15,6 +15,7 @@ export default class Kaybee extends EventEmitter {
   isKeyDown(key) {
     return this.pressedKeys[key] || false
   }
+
   isCodeDown(code) {
     return this.pressedCodes[code] || false
   }
@@ -40,3 +41,5 @@ export default class Kaybee extends EventEmitter {
       .replace(/(^\s$)|spacebar/, 'space')
   }
 }
+
+export default Kaybee

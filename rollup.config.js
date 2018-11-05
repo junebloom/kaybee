@@ -5,10 +5,10 @@ import uglify from 'rollup-plugin-uglify'
 import filesize from 'rollup-plugin-filesize'
 
 export default {
-  input: 'src/index.js',
+  input: 'src/Kaybee.js',
   output: {
     name: 'kaybee',
-    file: 'dist/kaybee.js',
+    file: 'dist/Kaybee.js',
     sourceMap: true,
     format: 'umd'
   },
