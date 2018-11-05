@@ -1,7 +1,7 @@
 import EventEmitter from 'eventemitter3'
 
 class Kaybee extends EventEmitter {
-  constructor(options = { renameKeys: true }) {
+  constructor(options = { renameKeys: true, repeat: true }) {
     super()
 
     this.options = options
@@ -21,7 +21,7 @@ class Kaybee extends EventEmitter {
   }
 
   handleKeyEvent(event) {
-    if (event.repeat) return
+    if (!this.options.repeat && event.repeat) return
     const pressed = event.type === 'keydown'
     const key = this.options.renameKeys
       ? Kaybee.transformKeyName(event.key)
@@ -31,7 +31,7 @@ class Kaybee extends EventEmitter {
     this.pressedKeys[key] = pressed
     this.pressedCodes[code] = pressed
 
-    this.emit(event.type, key, code)
+    this.emit(event.type, key, code, event.repeat)
   }
 
   static transformKeyName(key) {
