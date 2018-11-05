@@ -4,10 +4,7 @@ class Kaybee extends EventEmitter {
   constructor(options = {}) {
     super()
 
-    this.options = Object.assign(
-      { renameKeys: true, repeat: true, listen: true },
-      options
-    )
+    this.options = { renameKeys: true, repeat: true, listen: true, ...options }
     this.pressedKeys = {}
     this.pressedCodes = {}
 
