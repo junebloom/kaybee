@@ -4,12 +4,17 @@ class Kaybee extends EventEmitter {
   constructor(options = {}) {
     super()
 
-    this.options = Object.assign({ renameKeys: true, repeat: true }, options)
+    this.options = Object.assign(
+      { renameKeys: true, repeat: true, listen: true },
+      options
+    )
     this.pressedKeys = {}
     this.pressedCodes = {}
 
-    document.addEventListener('keydown', this.handleKeyEvent.bind(this))
-    document.addEventListener('keyup', this.handleKeyEvent.bind(this))
+    if (document && this.options.listen) {
+      document.addEventListener('keydown', this.handleKeyEvent.bind(this))
+      document.addEventListener('keyup', this.handleKeyEvent.bind(this))
+    }
   }
 
   isKeyDown(key) {
