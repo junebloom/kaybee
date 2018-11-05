@@ -5,8 +5,8 @@
   "repository": "sambrosia/kaybee",
   "author": "Sam Woodruff",
   "license": "MIT",
-  "main": "dist/kaybee.js",
-  "module": "src/index.js",
+  "main": "dist/Kaybee.js",
+  "module": "src/Kaybee.js",
   "files": [
     "dist",
     "src"
