@@ -2,7 +2,7 @@
 
 A very tiny keyboard input library for games.
 
-- Built on the [KeyboardEvent]() API.
+- Built on the [KeyboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) API.
 - Zero dependencies.
 - < 0.4kb compressed.
 
@@ -64,4 +64,4 @@ If `renameKeys` is `true`, then key names are transformed to more useful values 
 
 This is recommended because the names given by the browser can be less than ideal for games. For example, "a" and "A" are given as two different `key` names.
 
-See MDN's [key]() and [code]() pages for more info on names in the [KeyboardEvent]() API.
+See MDN's [key](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) and [code](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code) pages for more info on names in the [KeyboardEvent](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent) API.
