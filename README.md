@@ -1,66 +1,67 @@
-![kaybee](http://i.imgur.com/ngOrZvG.png)
-# kaybee
-A very small library for getting key state. Intended for use in combination with [fae](https://github.com/sambrosia/fae), but it's generic enough to be used for any project.
+# Kaybee 🐝
 
-# Installation
-`npm i -S kaybee`
+A very tiny keyboard input library for games.
+
+- Built on the [KeyboardEvent]() API.
+- Zero dependencies.
+- < 0.4kb compressed.
+
+# Getting Started
+
+via package manager:
+
+`yarn add kaybee` or `npm i -S kaybee`
+
+```js
+import { start } from "kaybee";
+```
+
+via CDN:
+
+```js
+// Use your preferred CDN; here we use jspm.
+import { start } from "https://jspm.dev/kaybee/dist/kaybee.js";
+```
 
 # Usage
-Kaybee will keep track of which keys are pressed at any given time. You can query key state like so:
 
 ```javascript
-import Kaybee from 'kaybee'
-const kb = new Kaybee({/* options */})
+// Start listening for KeyboardEvents and tracking key state.
+const kb = start({
+  // These are the available options and their default values.
+  element: window, // The element to listen for KeyboardEvents on.
+  renameKeys: true, // Whether to normalize key names.
+  enableRepeat: false, // Whether to call onKeyDown on "repeat" key events.
+  onKeyDown: ({ key, code, repeat }) => {}, // Called when a key is pressed.
+  onKeyUp: ({ key, code }) => {}, // Called when a key is released.
+});
 ```
 
-```javascript
-// ...somewhere in a gameloop perhaps
-if (kb.isKeyDown('f')) {
-  // do something
+```js
+// Query key state by key name.
+if (kb.getKey("f")) {
+  // Do something.
 }
 
-if (kb.isCodeDown('KeyW')) {
-  // do something else
+// Query key state by key code.
+if (kb.getCode("KeyW")) {
+  // Do something else.
 }
 ```
 
-Take a peek at the source to see what exactly is going on.
-
-## Events
-Kaybee extends [EventEmitter](https://github.com/primus/eventemitter3), and emits `'keydown'` and `'keyup'` events.
-
-```javascript
-kb.on('keydown', (key, code) => {
-  // respond to the keydown event
-})
-
-kb.on('keyup', (key, code) => {
-  // respond to the keyup event
-})
+```js
+// Clean up the DOM event listeners when your game is finished.
+kb.stop();
 ```
 
-## Options
-You can configure kaybee's behavior by passing an `options` object to the Kaybee constructor. There is currently only one option:
+If `renameKeys` is `true`, then key names are transformed to more useful values using three simple rules:
 
-### `renameKeys`
-If `true` (default), key name strings (but not key *code* strings) are transformed to more sensible values. All key names become lowercase, arrow keys are unprefixed, and the space key is given a real value.
+- All key names become lowercase. `"A"` -> `"a"`
+- Arrow keys are unprefixed. `"ArrowLeft"` -> `"left"`
+- And the space key is given a real value. `" "` -> `"space"`
 
-`'A'` -> `'a'`
+> Only the `key` name is changed by this option. The `code` name is unaffected.
 
-`'ArrowLeft'` -> `'left'`
+This is recommended because the names given by the browser can be less than ideal for games. For example, "a" and "A" are given as two different `key` names.
 
-`' '` -> `'space'`
-
-## Using with fae
-If you want to add key events to your fae game, it's fairly simple:
-
-```javascript
-import fae from 'fae'
-import Kaybee from 'kaybee'
-
-const app = new fae.Application()
-const kb = new Kaybee()
-
-kb.on('keydown', (key, code) => app.event.emit('keydown', key, code))
-kb.on('keyup', (key, code) => app.event.emit('keyup', key, code))
-```
+See MDN's [key]() and [code]() pages for more info on names in the [KeyboardEvent]() API.

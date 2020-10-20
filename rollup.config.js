@@ -1,9 +1,9 @@
 import { terser } from "rollup-plugin-terser";
 
 export default {
-  input: "src/Kaybee.js",
+  input: "src/kaybee.js",
   output: {
-    file: "dist/Kaybee.js",
+    file: "dist/kaybee.js",
     sourcemap: true,
     format: "es",
     name: "kaybee",

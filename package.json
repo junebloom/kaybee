@@ -6,8 +6,8 @@
   "author": "June Bloom",
   "license": "MIT",
   "type": "module",
-  "main": "dist/Kaybee.js",
-  "module": "src/Kaybee.js",
+  "main": "dist/kaybee.js",
+  "module": "src/kaybee.js",
   "files": [
     "dist",
     "src"
