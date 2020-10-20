@@ -1,50 +1,34 @@
-import EventEmitter from "eventemitter3";
+export function normalizeKeyName(key) {
+  return key
+    .toLowerCase() // Make all names lowercase.
+    .replace(/^arrow/, "") // Remove prefix for arrow keys.
+    .replace(/(^\s$)|spacebar/, "space"); // Give space a reasonable name.
+}
 
-class Kaybee extends EventEmitter {
-  constructor(options = {}) {
-    super();
+export class Kaybee {
+  constructor(options) {
+    this.options = {
+      renameKeys: true, // Whether to normalize key names.
+      repeat: true, // Whether to call onKeyDown on "repeat" key events.
+      onKeyDown: () => {}, // Called when a key is pressed.
+      onKeyUp: () => {}, // Called when a key is released.
+      ...options,
+    };
 
-    this.options = Object.assign(
-      { renameKeys: true, repeat: true, listen: true },
-      options
-    );
-    this.pressedKeys = {};
-    this.pressedCodes = {};
+    // Map of key states by key name.
+    this.keys = {};
 
-    if (document && this.options.listen) {
-      document.addEventListener("keydown", this.handleKeyEvent.bind(this));
-      document.addEventListener("keyup", this.handleKeyEvent.bind(this));
-    }
+    // Map of key states by key code.
+    this.codes = {};
+
+    this.start();
   }
 
-  isKeyDown(key) {
-    return this.pressedKeys[key] || false;
-  }
+  start() {}
 
-  isCodeDown(code) {
-    return this.pressedCodes[code] || false;
-  }
+  stop() {}
 
-  handleKeyEvent(event) {
-    if (!this.options.repeat && event.repeat) return;
-    const pressed = event.type === "keydown";
-    const key = this.options.renameKeys
-      ? Kaybee.transformKeyName(event.key)
-      : event.key;
-    const code = event.code;
-
-    this.pressedKeys[key] = pressed;
-    this.pressedCodes[code] = pressed;
-
-    this.emit(event.type, key, code, event.repeat);
-  }
-
-  static transformKeyName(key) {
-    return key
-      .toLowerCase()
-      .replace(/^arrow/, "")
-      .replace(/(^\s$)|spacebar/, "space");
-  }
+  handleKeyEvent() {}
 }
 
 export default Kaybee;
