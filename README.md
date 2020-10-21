@@ -25,11 +25,11 @@ import { start } from "https://jspm.dev/kaybee/dist/kaybee.js";
 
 # Usage
 
-```javascript
+```js
 // Start listening for KeyboardEvents and tracking key state.
 const kb = start({
   // These are the available options and their default values.
-  element: window, // The element to listen for KeyboardEvents on.
+  target: window, // The EventTarget to listen for KeyboardEvents on.
   renameKeys: true, // Whether to normalize key names.
   enableRepeat: false, // Whether to call onKeyDown on "repeat" key events.
   onKeyDown: ({ key, code, repeat }) => {}, // Called when a key is pressed.
