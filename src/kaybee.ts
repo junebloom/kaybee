@@ -31,7 +31,7 @@ export function start({
   enableRepeat = false, // Whether to call onKeyDown on "repeat" key events.
   onKeyDown = () => {}, // Called when a key is pressed.
   onKeyUp = () => {}, // Called when a key is released.
-}: KaybeeOptions): Kaybee {
+}: KaybeeOptions = {}): Kaybee {
   // Private API
   const keys = new Set();
   const codes = new Set();

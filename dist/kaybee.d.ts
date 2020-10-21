@@ -16,7 +16,7 @@ interface KaybeeOptions {
     readonly onKeyDown?: (event: KaybeeEvent) => void;
     readonly onKeyUp?: (event: KaybeeEvent) => void;
 }
-export declare function start({ target, renameKeys, enableRepeat, onKeyDown, onKeyUp, }: KaybeeOptions): Kaybee;
+export declare function start({ target, renameKeys, enableRepeat, onKeyDown, onKeyUp, }?: KaybeeOptions): Kaybee;
 declare const _default: {
     normalizeKeyName: typeof normalizeKeyName;
     start: typeof start;
