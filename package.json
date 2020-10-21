@@ -14,8 +14,7 @@
     "src"
   ],
   "scripts": {
-    "build": "rollup --config",
-    "prepublishOnly": "git push && git push --tags"
+    "build": "rollup --config"
   },
   "devDependencies": {
     "husky": "^4.3.0",
