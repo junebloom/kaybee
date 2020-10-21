@@ -60,7 +60,7 @@ If `renameKeys` is `true`, then key names are transformed to more useful values 
 - Arrow keys are unprefixed. `"ArrowLeft"` -> `"left"`
 - And the space key is given a real value. `" "` -> `"space"`
 
-> ℹ️ Only the `key` name is changed by this option. The `code` name is unaffected.
+> Only the `key` name is changed by this option. The `code` name is unaffected.
 
 This is recommended because the names given by the browser can be less than ideal for games. For example, "a" and "A" are given as two different `key` names.
 
