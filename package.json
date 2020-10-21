@@ -7,7 +7,8 @@
   "license": "MIT",
   "type": "module",
   "main": "dist/kaybee.js",
-  "module": "src/kaybee.js",
+  "module": "dist/kaybee.js",
+  "types": "dist/kaybee.d.ts",
   "files": [
     "dist",
     "src"
@@ -19,6 +20,8 @@
   "devDependencies": {
     "husky": "^4.3.0",
     "rollup": "^2.32.0",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.28.0",
+    "typescript": "^4.0.3"
   }
 }

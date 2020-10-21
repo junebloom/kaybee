@@ -1,0 +1,11 @@
+{
+  "files": ["src/kaybee.ts"],
+  "compilerOptions": {
+    "outDir": "dist",
+    "target": "ES2015",
+    "removeComments": true,
+    "declaration": true,
+    "sourceMap": true,
+    "strict": true
+  }
+}

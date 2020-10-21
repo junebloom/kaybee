@@ -1,12 +1,13 @@
 import { terser } from "rollup-plugin-terser";
+import typescript from "rollup-plugin-typescript2";
 
 export default {
-  input: "src/kaybee.js",
+  input: "src/kaybee.ts",
   output: {
-    file: "dist/kaybee.js",
-    sourcemap: true,
-    format: "es",
     name: "kaybee",
+    dir: "dist/",
+    format: "es",
+    sourcemap: true,
   },
-  plugins: [terser()],
+  plugins: [typescript(), terser()],
 };
